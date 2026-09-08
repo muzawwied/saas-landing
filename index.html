@@ -170,20 +170,20 @@ h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:tex
 .mock-bar i{width:10px;height:10px;border-radius:50%;background:var(--line-strong)}
 .mock-bar i:nth-child(1){background:#f87171}.mock-bar i:nth-child(2){background:#fbbf24}.mock-bar i:nth-child(3){background:#34d399}
 .mock-bar .mock-url{flex:1;margin-left:12px;height:24px;border-radius:6px;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;padding:0 12px;font-size:.68rem;color:var(--soft);gap:6px}
-.mock-body{display:grid;grid-template-columns:170px 1fr;min-height:340px}
+.mock-body{display:grid;grid-template-columns:170px minmax(0,1fr);min-height:340px;min-width:0}
 .mock-side{border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:4px;background:#fcfcfe}
 .mock-side b{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);padding:8px 8px 4px}
 .mock-side span{font-size:.78rem;color:var(--muted);padding:7px 8px;border-radius:6px;font-weight:500}
 .mock-side span.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
-.mock-main{padding:18px;display:flex;flex-direction:column;gap:14px}
-.mock-head{display:flex;justify-content:space-between;align-items:center}
-.mock-head b{font-size:.9rem;font-weight:700}
-.mock-head span{font-size:.66rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
-.mock-stats{display:grid;grid-template-columns:repeat(3,1fr)}
-.mock-stat{padding:10px 14px;border-left:1px solid var(--line)}
+.mock-main{padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0;overflow:hidden}
+.mock-head{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0}
+.mock-head b{font-size:.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.mock-head span{font-size:.66rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap;flex-shrink:0}
+.mock-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-width:0}
+.mock-stat{padding:10px 14px;border-left:1px solid var(--line);min-width:0;overflow:hidden}
 .mock-stat:first-child{border-left:none;padding-left:0}
-.mock-stat small{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:2px}
-.mock-stat b{font-size:1.05rem;font-weight:700;letter-spacing:-.02em}
+.mock-stat small{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock-stat b{font-size:1.05rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .mock-stat i{font-style:normal;font-size:.62rem;font-weight:700;color:#16a34a}
 .mock-chart{flex:1;border:1px solid var(--line);border-radius:var(--r-md);padding:12px;position:relative;min-height:120px}
 .mock-chart svg{width:100%;height:100%;overflow:visible}
@@ -415,7 +415,15 @@ footer{background:#0e1220;color:#9aa3b8;padding:80px 0 40px;margin-top:110px}
   .hero{padding:140px 0 60px}
   .hero-actions .btn{width:100%}
   .float-pill{display:none}
-  .mock-body{grid-template-columns:120px 1fr}
+  .mock-body{grid-template-columns:100px minmax(0,1fr)}
+  .mock-side{padding:12px 8px}
+  .mock-side span{font-size:.7rem;padding:6px 6px}
+  .mock-main{padding:14px}
+  .mock-stat{padding:8px 8px}
+  .mock-stat small{font-size:.54rem}
+  .mock-stat b{font-size:.88rem}
+  .mock-head b{font-size:.82rem}
+  .mock-head span{font-size:.6rem;padding:3px 8px}
   .stats-row{grid-template-columns:1fr}
   .stat-cell{border-left:none;padding:0;border-top:1px solid var(--line);padding-top:26px}
   .stat-cell:first-child{border-top:none;padding-top:0}
@@ -428,6 +436,10 @@ footer{background:#0e1220;color:#9aa3b8;padding:80px 0 40px;margin-top:110px}
   .pill-1,.pill-2{display:none}
 }
 /* ============ REDUCED MOTION ============ */
+@media(max-width:400px){
+  .mock-side{display:none}
+  .mock-body{grid-template-columns:1fr}
+}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
